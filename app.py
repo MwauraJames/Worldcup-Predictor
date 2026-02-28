@@ -12,10 +12,96 @@ st.title("World Cup Prediction App")
 
 st.write("Enter Home team,Away team and stage values below:")
 
-# Example for 3 features (adjust to your dataset)
-home = st.text_input("Home Team")
-away = st.text_input("Away Team")
-stage = st.text_input("Stage")
+teams = ['Brazil','Argentina',
+'Germany',
+'Italy',
+'England',
+'France',
+'Sweden',
+'United States'
+'West Germany',
+'Spain',
+'Netherlands',
+'Japan',
+'Uruguay',
+'Norway',
+'Belgium',
+'China',
+'Mexico',
+'South Korea',
+'Portugal',
+'Nigeria',
+'Soviet Union',
+'Australia',
+'Hungary',
+'Poland',
+'Yugoslavia',
+'Chile',
+'Switzerland',
+'Cameroon',
+'Austria',
+'Denmark',
+'Canada',
+'Paraguay',
+'Czechoslovakia',
+'Scotland',
+'Colombia',
+'Croatia',
+'Romania',
+'North Korea',
+'Costa Rica',
+'Ghana',
+'Morocco',
+'Saudi Arabia',
+'South Africa',
+'Peru',
+'Bulgaria',
+'Tunisia',
+'Algeria',
+'Republic of Ireland',
+'Russia',
+'Ecuador',
+'New Zealand',
+'Honduras',
+'Iran',
+'Ivory Coast',
+'Northern Ireland',
+'Greece',
+'Senegal',
+'Serbia',
+'Wales',
+'East Germany',
+'Chinese Taipei',
+'Jamaica',
+'Slovenia',
+'Cuba',
+'Turkey',
+'Zaire',
+'Iraq',
+'Czech Republic',
+'Togo',
+'Slovakia',
+'Thailand',
+'Qatar',
+'Haiti',
+'United Arab Emirates',
+'Bolivia',
+'Trinidad and Tobago',
+'Serbia and Montenegro',
+'Angola',
+'Ukraine',
+'Equatorial Guinea',
+'Bosnia and Herzegovina',
+'Egypt',
+'Iceland',
+'Panama',
+] # Add your full list here
+tournament_stages = ['group', 'round of 16', 'quarter-finals', 'semi-finals', 'final']
+
+# 2. Create the dropdowns
+home = st.selectbox("Home Team", teams)
+away = st.selectbox("Away Team", teams)
+stage = st.selectbox("Stage", tournament_stages)
 
 if st.button("Predict"):
     def predict_match(home_id, away_id, stage_name, group_stage, knockout_stage, year=2026):
@@ -25,8 +111,8 @@ if st.button("Predict"):
             return features[feature_name].get(team_id, default)
 
     # 1. Look up Confederation
-        home_conf = features['confederation'].get(home_id)  # Default to Europe if missing
-        away_conf = features['confederation'].get(away_id)
+        home_conf = features['confederation'].get(home_id, 0)  # Default to Europe if missing
+        away_conf = features['confederation'].get(away_id, 0)
 
     # 2. Construct the Feature Row
         row = {
