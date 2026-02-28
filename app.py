@@ -18,7 +18,7 @@ teams = ['Brazil','Argentina',
 'England',
 'France',
 'Sweden',
-'United States'
+'United States',
 'West Germany',
 'Spain',
 'Netherlands',
@@ -99,9 +99,26 @@ teams = ['Brazil','Argentina',
 tournament_stages = ['group', 'round of 16', 'quarter-finals', 'semi-finals', 'final']
 
 # 2. Create the dropdowns
-home = st.selectbox("Home Team", teams)
-away = st.selectbox("Away Team", teams)
-stage = st.selectbox("Stage", tournament_stages)
+home = st.selectbox(
+    "Home Team", 
+    teams, 
+    index=None, 
+    placeholder="Select home team..."
+)
+
+away = st.selectbox(
+    "Away Team", 
+    teams, 
+    index=None, 
+    placeholder="Select away team..."
+)
+
+stage = st.selectbox(
+    "Stage", 
+    tournament_stages, 
+    index=None, 
+    placeholder="Choose tournament stage..."
+)
 
 if st.button("Predict"):
     def predict_match(home_id, away_id, stage_name, group_stage, knockout_stage, year=2026):
